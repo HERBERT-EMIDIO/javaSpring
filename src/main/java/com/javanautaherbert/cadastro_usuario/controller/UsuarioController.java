@@ -12,6 +12,10 @@ public class UsuarioController { //30:05
 
     private final UsuarioService usuarioService;
 
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
+
     @PostMapping
     public ResponseEntity<Void> salvarUsuario(@RequestBody Usuario usuario){
     usuarioService.salvarUsuario(usuario);
@@ -25,19 +29,15 @@ public class UsuarioController { //30:05
 
 
     @DeleteMapping
-    public ResponseEntity<Void> deletarUsuarioPorEmail(RequestParam String email){
+    public ResponseEntity<Void> deletarUsuarioPorEmail(@RequestParam String email){
         usuarioService.deletarUsuarioPorEmail(email);
         return ResponseEntity.ok().build();
     }
 
 
     @PutMapping
-    public ResponseEntity<Void> atualizarUsuarioPorId(@RequestParam Interge id, @RequestBody Usuario){
+    public ResponseEntity<Void> atualizarUsuarioPorId(@RequestParam Integer id, @RequestBody Usuario usuario){
         usuarioService.atualizarUsuarioPorID(id, usuario);
         return ResponseEntity.ok().build(); //35:10
-    }
-
-    public UsuarioController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
     }
 }
